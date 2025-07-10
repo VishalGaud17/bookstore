@@ -1,0 +1,159 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookstore</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg text-center " style="background-color: #7c7b7b;">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+    data-bs-target="#navbarExample" aria-controls="navbarExample" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#"><img src="/images/bootstrap-logo.svg" width="36" /></a>
+    <div class="collapse navbar-collapse" id="navbarExample">
+      <ul class="navbar-nav me-auto mb-0">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}">
+            🏠 Home 
+          </a>
+        </li>
+
+        <!-- <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="/cart">Cart</a>
+        </li> -->
+
+         <li class="nav-item">
+      <a class="nav-link" href="{% url 'view_cart' %}">
+        🛒 Cart <span class="badge bg-success">{{ cart_item_count }}</span>
+      </a>
+    </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Projects</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="d-flex align-items-center gap-3">
+  {% if user.is_authenticated %}
+    <span class="text-white me-2">Welcome, <strong>{{ user.username }}</strong></span>
+    <a class="btn btn-danger" href="{% url 'logout' %}">Logout</a>
+  {% else %}
+    <a class="btn btn-success" href="{% url 'login' %}">Login</a>
+    <a class="btn btn-primary" href="{% url 'signup' %}">Signup</a>
+  {% endif %}
+</div>
+    </div>
+  </div>
+</nav>
+
+    <div class="container mt-4">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+<!-- Footer -->
+<!-- <footer class="text-center " style="background-color: #8a8787;"> -->
+  <!-- Grid container -->
+  <!-- <div class="container p-4"> -->
+
+    <!-- Section: Social media -->
+    <!-- <section class="mb-4"> -->
+      <!-- Facebook -->
+      <!-- <a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998" href="#!" role="button"><i class="fab fa-facebook-f"></i></a> -->
+
+      <!-- Twitter -->
+      <!-- <a class="btn btn-primary btn-floating m-1" style="background-color: #55acee" href="#!" role="button"><i class="fab fa-twitter"></i></a> -->
+
+      <!-- Google -->
+      <!-- <a class="btn btn-primary btn-floating m-1" style="background-color: #dd4b39" href="#!" role="button"><i class="fab fa-google"></i></a> -->
+
+      <!-- Instagram -->
+      <!-- <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac" href="#!" role="button"><i class="fab fa-instagram"></i></a> -->
+
+      <!-- Linkedin -->
+      <!-- <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a> -->
+      <!-- Github -->
+      <!-- <a class="btn btn-primary btn-floating m-1" style="background-color: #333333" href="#!" role="button"><i class="fab fa-github"></i></a> -->
+    <!-- </section> -->
+    <!-- Section: Social media -->
+
+
+
+    <!-- Section: Text -->
+    <!-- <section class="mb-4">
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
+        distinctio earum repellat quaerat voluptatibus placeat nam,
+        commodi optio pariatur est quia magnam eum harum corrupti dicta,
+        aliquam sequi voluptate quas.
+      </p> -->
+    <!-- </section> -->
+    <!-- Section: Text -->
+
+
+  <!-- </div> -->
+  <!-- Grid container -->
+
+ <!-- Copyright -->
+    <!-- <div class="text-center text-white p-3" style="background-color: #333333;">
+        © 2025 Bookstore. All rights reserved.
+    </div> -->
+<!-- Copyright -->
+
+<!-- </footer> -->
+<!-- Footer -->
+
+<!-- Footer -->
+<footer class="text-center text-white" style="background-color: #343a40;">
+  <!-- Grid container -->
+  <div class="container p-4">
+
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      <a class="btn btn-primary btn-floating m-1" style="background-color: #dd4b39" href="#" role="button">
+        <i class="fab fa-google"></i>
+      </a>
+      <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca" href="#" role="button">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <a class="btn btn-primary btn-floating m-1" style="background-color: #333333" href="#" role="button">
+        <i class="fab fa-github"></i>
+      </a>
+    </section>
+
+    <!-- Section: About / Contact -->
+    <section class="mb-4">
+      <p class="mb-1">
+        <strong>Bookstore</strong> — Your trusted place to find books across all genres. Fast delivery. Secure payments.
+      </p>
+      <p class="mb-0">
+        <i class="fas fa-envelope me-2"></i> support@bookstore.com |
+        <i class="fas fa-phone me-2"></i> +91 98765 43210
+      </p>
+    </section>
+  </div>
+
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: #23272b;">
+    © {% now "Y" %} Bookstore. All rights reserved.
+  </div>
+</footer>
+<!-- Footer -->
+
+
+</body>
+</html>
+

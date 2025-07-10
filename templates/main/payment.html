@@ -1,0 +1,38 @@
+<h2 class="text-center">Processing Payment...</h2>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    var options = {
+        "key": "{{ key }}",
+        "amount": "{{ payment.amount }}", 
+        "currency": "INR",
+        "name": "Bookstore",
+        "description": "Book Purchase",
+        "order_id": "{{ payment.id }}",
+        "handler": function (response){
+            window.location.href = "/payment/success/";
+        },
+        "modal": {
+            "ondismiss": function() {
+                window.location.href = "{% url 'payment_cancel' %}";
+            }
+        },
+        "prefill": {
+            "email": "{{ user.email }}",
+            "contact": "{{ user.phone }}"
+        },
+        "method": {
+            "upi": true,
+            "card": true,
+            "netbanking": true,
+            "wallet": true
+        },
+        "theme": {
+            "color": "#3399cc"
+        }
+    };
+
+
+    var rzp = new Razorpay(options);
+    rzp.open();
+</script>

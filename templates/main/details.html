@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+
+  <!-- Back Button -->
+  <div class="mb-3">
+    <a href="{% url 'home' %}" class="btn btn-secondary">
+      ← Back to Home
+    </a>
+  </div>
+
+  <div class="card shadow-lg mb-5">
+    <div class="row g-0">
+      <div class="col-md-4">
+        {% if book.cover_image %}
+          <img src="{{ book.cover_image.url }}" alt="{{ book.title }}" class="img-fluid">
+        {% else %}
+          <img src="{% static 'images/default-book.jpg' %}" alt="No image" class="img-fluid">
+        {% endif %}
+      </div>
+      <div class="col-md-8 d-flex flex-column justify-content-between">
+        <div class="card-body">
+          <h2 class="card-title display-5 fw-bold">{{ book.title }}</h2>
+          <h5 class="text-secondary mb-3">by {{ book.author }}</h5>
+          <p class="card-text fs-5 text-muted">{{ book.description }}</p>
+          <h4 class="text-dark mt-4">Price: ₹{{ book.price }}</h4>
+        </div>
+        <div class="d-flex justify-content-end gap-3 p-3">
+          <a href="{% url 'add_to_cart' book.id %}" class="btn btn-outline-primary btn-lg">Add to Cart</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

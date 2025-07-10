@@ -1,0 +1,16 @@
+# Python bytecode
+*.pyc
+__pycache__/
+
+# Environment variables
+.env
+
+# SQLite database
+*.sqlite3
+
+# VSCode and IDE settings (optional but recommended)
+.vscode/
+*.code-workspace
+
+# Logs (optional)
+*.log
